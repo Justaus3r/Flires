@@ -21,3 +21,7 @@ void FlightBooking::modifyBooking(Booking *bK) {
 	;
 }
 
+void FlightBooking::retrieveData(void *data) {
+	;
+}
+
