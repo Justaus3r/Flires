@@ -35,6 +35,9 @@ class FlightBooking {
 		void deleteBooking(Booking* bK);
 };
 
+class PromptCommunicator {
+	// retreive data from PromptCreator and communicate with FlightBooking
+};
 
 
 #endif
