@@ -18,6 +18,8 @@ void clearScreen() {
 	// ANSI Escape sequence for clearing the terminal
 	// reference: https://en.wikipedia.org/wiki/ANSI_escape_code
 	std::cout<<"\x1b[2J";
+	// clear scroll bar also
+	std::cout << "\x1b[3J";
 }
 
 
