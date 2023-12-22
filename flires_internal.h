@@ -33,8 +33,10 @@ class FlightBooking {
 		void viewBooking();
 		void modifyBooking(Booking* bK);
 		void deleteBooking(Booking* bK);
+		void createTicket();
 	private:
 		void retrieveData(void *data);
+		void compostTicketHtml();
 
 
 };

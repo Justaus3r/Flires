@@ -13,6 +13,14 @@ void FlightBooking::viewBooking() {
 	;
 }
 
+void FlightBooking::createTicket() {
+	;
+}
+
+void FlightBooking::compostTicketHtml() {
+	;
+}
+
 void FlightBooking::deleteBooking(Booking *bK) {
 	;
 }
@@ -24,4 +32,5 @@ void FlightBooking::modifyBooking(Booking *bK) {
 void FlightBooking::retrieveData(void *data) {
 	;
 }
+
 

@@ -60,6 +60,11 @@ TerminalPosition get_terminal_size() {
 	return tP;
 }
 
-class PromptCreator {
+PromptCreator::PromptCreator(){
+	
 
-};
+}
+
+bool PromptCreator::attachToCommunicator() {
+
+}
