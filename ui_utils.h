@@ -24,7 +24,6 @@ public:
 	PromptCreator();
 	bool attachToCommunicator();
 	COORD createPrompt();
-
 };
 
 

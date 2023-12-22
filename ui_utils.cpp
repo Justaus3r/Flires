@@ -61,10 +61,14 @@ TerminalPosition get_terminal_size() {
 }
 
 PromptCreator::PromptCreator(){
-	
-
+	;
 }
 
 bool PromptCreator::attachToCommunicator() {
+	;
+}
 
+COORD PromptCreator::createPrompt() {
+
+	
 }
