@@ -1,29 +1,31 @@
 #ifndef UI_UTILS_H
 #define UI_UTILS_H
 
-#include <Windows.h>
+#include <windows.h>
+#include <iostream>
+#include <vector>
 
-struct TerminalPosition {
+struct TerminalCoords {
 	int x;
 	int y;
 };
 
-void writeToStdout();
+void writeToStdout(COORD pos, std::string writable, WORD wAttr);
 
-void clearScreen();
-
-void changeConsoleColor();
+void clearStdOut();
 
 bool moveToPos(COORD conCoord);
 
 
-TerminalPosition get_terminal_size();
+TerminalCoords get_terminal_size();
 
 class PromptCreator {
 public:
+	std::vector<std::string> rows;
 	PromptCreator();
-	bool attachToCommunicator();
+	void addRow(std::string row);
 	COORD createPrompt();
+	bool attachToCommunicator();
 };
 
 
