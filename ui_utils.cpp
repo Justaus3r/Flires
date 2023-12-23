@@ -9,6 +9,20 @@ HANDLE getStdOutHndl() {
 	return GetStdHandle(STD_OUTPUT_HANDLE);
 }
 
+
+void setWindowTitle() {
+	;
+}
+
+
+void setWindowSize() {
+	;
+}
+
+void setWindowPos() {
+	;
+}
+
 void clearStdOut() {
 	// reference: https://learn.microsoft.com/en-us/windows/console/clearing-the-screen
 	// emulating the behaviour of cls.exe on cmd.exe
@@ -104,7 +118,6 @@ TerminalCoords get_terminal_size() {
 }
 
 PromptCreator::PromptCreator(){
-	;
 }
 
 bool PromptCreator::attachToCommunicator() {
@@ -112,10 +125,12 @@ bool PromptCreator::attachToCommunicator() {
 }
 
 COORD PromptCreator::createPrompt() {
-
+	
 	
 }
 
-void PromptCreator::addRow(std::string row) {
-
+void PromptCreator::addRow(std::string row, WORD rowWAttr, bool isTitle=false) {
+	this->isTitle = isTitle;
+	this->rows.push_back(row);
+	this->rowWAttrs.push_back(rowWAttr);
 }
