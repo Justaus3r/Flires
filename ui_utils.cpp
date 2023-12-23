@@ -10,17 +10,22 @@ HANDLE getStdOutHndl() {
 }
 
 
-void setWindowTitle() {
-	;
+void setWindowTitle(LPCSTR winTitle) {
+	//reference: https://learn.microsoft.com/en-us/windows/console/setconsoletitle
+	BOOL _ = SetConsoleTitle(winTitle);
 }
 
 
-void setWindowSize() {
-	;
+void setWindowSize(COORD winSize) {
+	//reference: https://learn.microsoft.com/en-us/windows/console/setconsoledisplaymode
+	HANDLE stdOutHndl = getStdOutHndl();
+	BOOL _ = SetConsoleDisplayMode(stdOutHndl, CONSOLE_WINDOWED_MODE, &winSize);
 }
 
-void setWindowPos() {
-	;
+void centerWindowPos() {
+	//reference: https://learn.microsoft.com/en-us/windows/console/setconsolewindowinfo
+	HANDLE stdOutHndl = getStdOutHndl();
+
 }
 
 void clearStdOut() {
