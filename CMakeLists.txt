@@ -12,7 +12,7 @@ endif()
 project ("Flires")
 
 # Add source to this project's executable.
-add_executable (Flires "flires_internal.cpp" "flires_internal.h"  "ui_utils.h" "ui_utils.cpp"  "main.cpp" "misc.h" "misc.cpp")
+add_executable (Flires    "ui_utils.h" "ui_utils.cpp"  "main.cpp"  "prompt_action_drivers.h" "flires_internals.cpp" "flires_internals.h" "ticket_creation_internal.h")
 
 if (CMAKE_VERSION VERSION_GREATER 3.12)
   set_property(TARGET Flires PROPERTY CXX_STANDARD 20)
