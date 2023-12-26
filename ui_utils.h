@@ -22,7 +22,8 @@ enum Datatype {
 class PromptCreator;
 
 struct callbackArgs {
-	Booking* bK;
+	Booking* bK ;
+	FlightBooking* flBk;
 	PromptCreator* pC;
 	std::string strType0;
 	std::string strType1;

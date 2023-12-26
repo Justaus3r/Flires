@@ -2,21 +2,18 @@
 #define PROMPT_ACTION_DRIVERS_H
 
 #include "ui_utils.h"
+#include "flires_internals.h"
 #include <conio.h>
 
-//char* opt, PromptCreator *pC
 void pCHomeDriver(callbackArgs* cA) {
 	char opt = cA->charType0;
-	std::cout <<"\nVal: " << opt << std::endl;
 	switch (opt) {
 	case '1':
 	{
 		clearStdOut();
-		//std::cout << cA->pC->children.size()<<std::endl;
 		COORD aPrIn = cA->pC->children[0]->createPrompt();
-		//std::cout << aPrIn.X << std::endl;
 		int opt;
-		cA->pC->children[0]->promptInput(&opt, INT_TYPE, {0,0});
+		cA->pC->children[0]->promptInput(&opt, INT_TYPE, aPrIn);
 
 		callbackArgs cA1;
 		cA1.intType0 = opt;
@@ -40,8 +37,16 @@ void pCHomeDriver(callbackArgs* cA) {
 	case '3':
 	{
 		clearStdOut();
-		COORD aPrIn = cA->pC->children[2]->createPrompt();
+		COORD _ = cA->pC->children[2]->createPrompt();
 		_getch();
+		clearStdOut();
+		COORD aPrIn = cA->pC->createPrompt();
+		char opt;
+		cA->pC->promptInput(&opt, SELECTION_TYPE, aPrIn);
+		callbackArgs cA1;
+		cA1.charType0 = opt;
+		cA1.pC = cA->pC;
+		cA->pC->execpromptActionDriver(&cA1);
 		exit(0);
 	}
 	
@@ -55,46 +60,55 @@ void pCHomeDriver(callbackArgs* cA) {
 
 void pCPCountDriver(callbackArgs* cA) {
 	clearStdOut();
+	Booking bK;
+	cA->bK = &bK;
 	int passengerCount = cA->intType0;
 	cA->bK->flC.passengerCount = passengerCount;
 	cA->pC->createPrompt();
 	callbackArgs cA1;
 	cA1.pC = cA->pC->children[0];
+	cA1.bK = cA->bK;
 	cA->pC->children[0]->execpromptActionDriver(&cA1);
 }
 
 void pCPInputDriver(callbackArgs* cA) {
-
-	;
+	Booking* bK = cA->bK;
+	COORD aPrIn = cA->pC->createPrompt();
+	Sleep(6000);
+	readTicketData(bK);
+	FlightBooking flBk =  FlightBooking("flight#1", bK);
+	//flBk.createBooking(bK);
+	//std::cout << flBk.bKP->flC.passengerCount << std::endl;
+	_getch();
+	callbackArgs cA1;
+	cA1.pC = cA->pC->children[0];
+	cA1.flBk = &flBk;
+	cA->pC->children[0]->execpromptActionDriver(&cA1);	
 }
 
 void pCATypeDriver(callbackArgs* cA) {
-	;
+	clearStdOut();
 }
 
 void pCA1Driver(callbackArgs* cA) {
-	;
+	clearStdOut();
 }
 
 void pCA2Driver(callbackArgs* cA) {
-	;
+	clearStdOut();
 }
 
 
 void pCA3Driver(callbackArgs* cA) {
-	;
+	clearStdOut();
 }
 
 void pCDesCitDriver(callbackArgs* cA) {
-	;
+	clearStdOut();
 }
 
 void pCDepDateDriver(callbackArgs* cA) {
-	;
-}
-
-void pCQueSerDriver(callbackArgs* cA) {
-	;
+	clearStdOut();
 }
 
 

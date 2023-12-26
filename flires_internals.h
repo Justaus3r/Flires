@@ -34,8 +34,9 @@ struct Booking {
 class FlightBooking {
 	public:
 		const char* fName;
-		Booking* bK = NULL;
-		FlightBooking(const char* fName);
+	
+		Booking* bK;
+		FlightBooking(const char* fName, Booking* bK);
 		void createBooking(Booking *bK);
 		void createTicket();
 	private:	

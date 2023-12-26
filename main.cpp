@@ -22,7 +22,7 @@ pCHome.addRow(INPUT_PROMPT, FOREGROUND_RED);
 PromptCreator pCPCount = PromptCreator("Passenger-Count", "Please Input the Passenger count(1-16)");
 pCPCount.addRow(INPUT_PROMPT, WHITE);
 
-PromptCreator pCPInput = PromptCreator("Passenger-Input", "A Text editor is being opened for free-input");
+PromptCreator pCPInput = PromptCreator("Passenger-Input", "A Text editor is being opened for free-input(in 6s)");
 pCPInput.addRow("Please Input all the PassengerNames,", WHITE);
 pCPInput.addRow("age, gender, weightage per head(in lbs)", WHITE);
 pCPInput.addRow("in the editor, seperated by a newline.", WHITE);
@@ -123,14 +123,13 @@ PromptCreator pCQueSer = PromptCreator("Query-Services-prooompt", "Choose an Opt
 pCQueSer.addRow("[1]: View tickets", WHITE);
 pCQueSer.addRow("[2]: Check flight details", WHITE);
 pCQueSer.addRow("[3]: Compare Charter Fare Types", WHITE);
+pCQueSer.addRow("[*]>>", WHITE);
 
 PromptCreator pCContUs = PromptCreator("Contact-Us(plz don't)", NULL);
 pCContUs.addRow("You can contact us by mailing us at x-neron@pm.me.", WHITE);
-pCContUs.addRow("				     AND                           ", WHITE);
+pCContUs.addRow("				         AND                         ", WHITE);
 pCContUs.addRow("Report bugs at: https://github.com/Justaus3r/Flires-Issues", WHITE);
-
-PromptCreator pCQuit = PromptCreator("Contact-Us(plz don't)", NULL);
-
+pCContUs.addRow("Press any key to continue...", WHITE);
 /*
 -----------------------------
 Add children to their ancestors,i.e: 
@@ -142,8 +141,6 @@ child prompts
 pCHome.addChild(&pCPCount);
 pCHome.addChild(&pCQueSer);
 pCHome.addChild(&pCContUs);
-pCHome.addChild(&pCQuit);
-
 pCPCount.addChild(&pCPInput);
 pCPInput.addChild(&pCAType);
 
@@ -176,11 +173,30 @@ pCDepDate.addChild(&pCTicketGen);
 pCTicketGen.addChild(&pCTicketGenDone);
 
 
-void (*callbackH)(callbackArgs* cA);
+/*
+--------------------------------------
+Set callbacks for every prompt action
+--------------------------------------
+*/
+void (*callbackHome)(callbackArgs* cA);
+void (*callbackPCount)(callbackArgs* cA);
+void (*callbackPInput)(callbackArgs* cA);
+void (*callbackAType)(callbackArgs* cA);
+void (*callbackA)(callbackArgs* cA);
+void (*callbackDesCoun)(callbackArgs* cA);
+void (*callbackDesCit)(callbackArgs* cA);
+void (*callbackDepDate)(callbackArgs * cA);
+void (*callbackTicketGen)(callbackArgs * cA);
+void (*callbackTicketGenDone)(callbackArgs * cA);
 
-callbackH = pCHomeDriver;
-pCHome.setPromptActionDriver(callbackH);
 
+
+callbackHome = pCHomeDriver;
+callbackPCount = pCPCountDriver;
+callbackPInput = pCPInputDriver;
+pCHome.setPromptActionDriver(callbackHome);
+pCPCount.setPromptActionDriver(callbackPCount);
+pCPInput.setPromptActionDriver(callbackPInput);
 /*
 -----------------------------
 End children append
@@ -215,7 +231,7 @@ End children append
 	callbackArgs cA;
 	cA.charType0 = optC;
 	cA.pC = &pCHome;
-	pCHome.actionCallback(&cA);
+	pCHome.execpromptActionDriver(&cA);
 	std::cout << pCHome.children.size()<<std::endl;
 	_getch();
 

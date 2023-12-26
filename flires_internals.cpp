@@ -1,8 +1,9 @@
 #include "flires_internals.h"
 #include "ticket_creation_internal.h"
 
-FlightBooking::FlightBooking(const char* fName) {
+FlightBooking::FlightBooking(const char* fName, Booking* bK) {
 	this->fName = fName;
+    this->bK = bK;
 }
 
 void FlightBooking::createBooking(Booking* bK) {
@@ -38,6 +39,7 @@ std::vector<std::string> stringSplit(const std::string& input, char delimiter) {
 
 
 void readTicketData(Booking* bK) {
+    system("type NUL > tmp.ticketinfo.txt");
     system("notepad tmp.ticketinfo.txt");
     std::ifstream fh;
     std::vector<std::string> passengersName;
