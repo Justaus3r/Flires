@@ -33,8 +33,7 @@ struct Booking {
 
 class FlightBooking {
 	public:
-		const char* fName;
-	
+		const char* fName;	
 		Booking* bK;
 		FlightBooking(const char* fName, Booking* bK);
 		void createBooking(Booking *bK);

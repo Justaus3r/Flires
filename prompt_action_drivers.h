@@ -72,13 +72,14 @@ void pCPCountDriver(callbackArgs* cA) {
 }
 
 void pCPInputDriver(callbackArgs* cA) {
+	clearStdOut();
 	Booking* bK = cA->bK;
 	COORD aPrIn = cA->pC->createPrompt();
 	Sleep(6000);
 	readTicketData(bK);
 	FlightBooking flBk =  FlightBooking("flight#1", bK);
-	//flBk.createBooking(bK);
-	//std::cout << flBk.bKP->flC.passengerCount << std::endl;
+	flBk.createBooking(bK);
+	std::cout << flBk.bK->flC.passengerCount << std::endl;
 	_getch();
 	callbackArgs cA1;
 	cA1.pC = cA->pC->children[0];
