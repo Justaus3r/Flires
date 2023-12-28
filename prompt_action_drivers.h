@@ -11,13 +11,8 @@ void pCHomeDriver(callbackArgs* cA) {
 	case '1':
 	{
 		clearStdOut();
-		COORD aPrIn = cA->pC->children[0]->createPrompt();
-		int opt;
-		cA->pC->children[0]->promptInput(&opt, INT_TYPE, aPrIn);
-
 		callbackArgs cA1;
-		cA1.intType0 = opt;
-		cA1.pC = cA->pC->children[0];
+		cA1.pC = cA -> pC->children[0];
 		cA->pC->children[0]->execpromptActionDriver(&cA1);
 		break;
 	}
@@ -62,9 +57,10 @@ void pCPCountDriver(callbackArgs* cA) {
 	clearStdOut();
 	Booking bK;
 	cA->bK = &bK;
-	int passengerCount = cA->intType0;
+	COORD aPrIn = cA->pC->createPrompt();
+	std::string passengerCount;
+	cA->pC->promptInput(&passengerCount, STRING_TYPE, aPrIn);
 	cA->bK->flC.passengerCount = passengerCount;
-	cA->pC->createPrompt();
 	callbackArgs cA1;
 	cA1.pC = cA->pC->children[0];
 	cA1.bK = cA->bK;
@@ -76,11 +72,14 @@ void pCPInputDriver(callbackArgs* cA) {
 	Booking* bK = cA->bK;
 	COORD aPrIn = cA->pC->createPrompt();
 	Sleep(6000);
-	readTicketData(bK);
+	int status = readTicketData(bK);
+	 if (!status) {
+		 generateErrorMsg("All fields are necessary!, retry in 2s", 2000);
+		 cA->pC->execpromptActionDriver(cA);
+		 return;
+	 }
 	FlightBooking flBk =  FlightBooking("flight#1", bK);
 	flBk.createBooking(bK);
-	std::cout << flBk.bK->flC.passengerCount << std::endl;
-	_getch();
 	callbackArgs cA1;
 	cA1.pC = cA->pC->children[0];
 	cA1.flBk = &flBk;
@@ -89,18 +88,28 @@ void pCPInputDriver(callbackArgs* cA) {
 
 void pCATypeDriver(callbackArgs* cA) {
 	clearStdOut();
+	COORD aPrIn = cA->pC->createPrompt();
+	char opt;
+	cA->pC->promptInput(&opt, SELECTION_TYPE, aPrIn);
+	callbackArgs cA1;
+	switch (opt) {
+	case '1': {
+		cA1.pC = cA->pC->children[0];
+		break;
+	}
+	case '2': {
+		cA1.pC = cA->pC->children[1];
+		break;
+	}
+	case '3': {
+		cA1.pC = cA->pC->children[2];
+		break;
+	}
+	
+	}
 }
 
-void pCA1Driver(callbackArgs* cA) {
-	clearStdOut();
-}
-
-void pCA2Driver(callbackArgs* cA) {
-	clearStdOut();
-}
-
-
-void pCA3Driver(callbackArgs* cA) {
+void pCADriver(callbackArgs* cA) {
 	clearStdOut();
 }
 

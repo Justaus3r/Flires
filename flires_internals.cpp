@@ -38,7 +38,7 @@ std::vector<std::string> stringSplit(const std::string& input, char delimiter) {
 }
 
 
-void readTicketData(Booking* bK) {
+int readTicketData(Booking* bK) {
     system("type NUL > tmp.ticketinfo.txt");
     system("notepad tmp.ticketinfo.txt");
     std::ifstream fh;
@@ -58,11 +58,14 @@ void readTicketData(Booking* bK) {
     std::string tKLine;
 
     while (getline(fh, tKLine)) {
-        std::vector<std::string> str = stringSplit(tKLine, ' ');
-        passengersName.push_back(str[0]);
-        passengersAge.push_back(str[1]);
-        passengerGender.push_back(str[2]);
-        passengerWeightage.push_back(str[3]);
+        std::vector<std::string> TkLnInfostr = stringSplit(tKLine, ' ');
+        if (TkLnInfostr.size() < 4) {
+            return 0;
+        }
+        passengersName.push_back(TkLnInfostr[0]);
+        passengersAge.push_back(TkLnInfostr[1]);
+        passengerGender.push_back(TkLnInfostr[2]);
+        passengerWeightage.push_back(TkLnInfostr[3]);
     }
 
     fh.close();
@@ -71,5 +74,8 @@ void readTicketData(Booking* bK) {
     bK->flC.passengersAge = passengersAge;
     bK->flC.passengerGender = passengerGender;
     bK->flC.passengerWeightage = passengerWeightage;
+
+
+    return 1;
 }
 

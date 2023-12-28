@@ -15,7 +15,8 @@ struct flightCrew {
 	std::vector<std::string> passengerGender;
 	std::vector<std::string> passengersAge;
     std::vector<std::string> passengerWeightage;
-	std::string passengerCount;	
+	std::string passengerCount;
+	bool charterPilot;
 
 };
 
@@ -45,7 +46,7 @@ class FlightBooking {
 };
 
 std::vector<std::string> stringSplit(const std::string& input, char delimiter);
-void readTicketData(Booking* bK);
+int readTicketData(Booking* bK);
 
 
 

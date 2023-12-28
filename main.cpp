@@ -106,6 +106,11 @@ pCDesCit1.addRow("[1]: Jakarta", WHITE);
 pCDesCit1.addRow("[2]: Medan", WHITE);
 pCDesCit1.addRow(INPUT_PROMPT, WHITE);
 
+PromptCreator pCAddPilot = PromptCreator("additional-pilot?", NULL);
+pCAddPilot.addRow("Do you require a Pilot for your flight?", WHITE);
+pCAddPilot.addRow("*Note: It will increase base price upto 10%", FOREGROUND_BLUE);
+pCAddPilot.addRow(INPUT_PROMPT, WHITE);
+
 
 PromptCreator pCDepDate = PromptCreator("Departure-Date", "Input Departure Date");
 pCDepDate.addRow("*Must be in DD/MM/YYYY Format!", WHITE);
@@ -127,7 +132,7 @@ pCQueSer.addRow("[*]>>", WHITE);
 
 PromptCreator pCContUs = PromptCreator("Contact-Us(plz don't)", NULL);
 pCContUs.addRow("You can contact us by mailing us at x-neron@pm.me.", WHITE);
-pCContUs.addRow("				         AND                         ", WHITE);
+pCContUs.addRow("                      AND", WHITE);
 pCContUs.addRow("Report bugs at: https://github.com/Justaus3r/Flires-Issues", WHITE);
 pCContUs.addRow("Press any key to continue...", WHITE);
 /*
@@ -194,9 +199,13 @@ void (*callbackTicketGenDone)(callbackArgs * cA);
 callbackHome = pCHomeDriver;
 callbackPCount = pCPCountDriver;
 callbackPInput = pCPInputDriver;
+callbackAType = pCATypeDriver;
+
 pCHome.setPromptActionDriver(callbackHome);
 pCPCount.setPromptActionDriver(callbackPCount);
 pCPInput.setPromptActionDriver(callbackPInput);
+pCAType.setPromptActionDriver(callbackAType);
+
 /*
 -----------------------------
 End children append
