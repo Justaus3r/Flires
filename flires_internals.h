@@ -17,13 +17,18 @@ struct flightCrew {
     std::vector<std::string> passengerWeightage;
 	std::string passengerCount;
 	bool charterPilot;
-
 };
 
 
+enum AIRCRAFT_TYPE {
+	LIGHT,
+	MIDESIZE,
+	LARGECABIN
+};
+
 struct Booking {
 	const char* flightName;
-	const char* aircraftType;
+	AIRCRAFT_TYPE aircraftType;
 	const char* aircraftName;
 	flightCrew flC;
 	std:: string departureDate;

@@ -172,9 +172,8 @@ pCDesCit4.addChild(&pCDepDate);
 pCDesCit5.addChild(&pCDepDate);
 pCDesCit6.addChild(&pCDepDate);
 pCDesCit7.addChild(&pCDepDate);
-
-pCDepDate.addChild(&pCTicketGen);
-
+pCDepDate.addChild(&pCAddPilot);
+pCAddPilot.addChild(&pCTicketGen);
 pCTicketGen.addChild(&pCTicketGenDone);
 
 
@@ -190,6 +189,7 @@ void (*callbackAType)(callbackArgs* cA);
 void (*callbackA)(callbackArgs* cA);
 void (*callbackDesCoun)(callbackArgs* cA);
 void (*callbackDesCit)(callbackArgs* cA);
+void (*callbackAddPilot)(callbackArgs* cA);
 void (*callbackDepDate)(callbackArgs * cA);
 void (*callbackTicketGen)(callbackArgs * cA);
 void (*callbackTicketGenDone)(callbackArgs * cA);
@@ -200,11 +200,17 @@ callbackHome = pCHomeDriver;
 callbackPCount = pCPCountDriver;
 callbackPInput = pCPInputDriver;
 callbackAType = pCATypeDriver;
+callbackA = pCADriver;
+callbackDesCoun = pCDesCounDriver;
 
 pCHome.setPromptActionDriver(callbackHome);
 pCPCount.setPromptActionDriver(callbackPCount);
 pCPInput.setPromptActionDriver(callbackPInput);
 pCAType.setPromptActionDriver(callbackAType);
+pCA1.setPromptActionDriver(callbackA);
+pCA2.setPromptActionDriver(callbackA);
+pCA3.setPromptActionDriver(callbackA);
+pCDesCoun.setPromptActionDriver(callbackDesCoun);
 
 /*
 -----------------------------
@@ -226,22 +232,11 @@ End children append
 	COORD wnSize = {120, 35};
 	setWindowPosNSize(wnSize);
 	clearStdOut();
-	//moveToPos(co); //Y
-	//std::cout << "WRKN";
-	//while (true)
-	//{
 
 
-
-
-	COORD pco = pCHome.createPrompt();
-	char optC = ' ';
-	pCHome.promptInput(&optC, SELECTION_TYPE, pco);
 	callbackArgs cA;
-	cA.charType0 = optC;
 	cA.pC = &pCHome;
 	pCHome.execpromptActionDriver(&cA);
-	std::cout << pCHome.children.size()<<std::endl;
 	_getch();
 
 }
