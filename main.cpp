@@ -37,20 +37,20 @@ pCAType.addRow("[3]: Large Cabin", WHITE);
 pCAType.addRow(INPUT_PROMPT, WHITE);
 
 
-PromptCreator pCA1 = PromptCreator("Aircraft-Type-1", "Choose Aircraft");
+PromptCreator pCA1 = PromptCreator("Aircraft-Type-Light", "Choose Aircraft");
 pCA1.addRow("[1]: Citation Ultra", WHITE);
 pCA1.addRow("[2]: Citation CJ3", WHITE);
 pCA1.addRow("[3]: Citation 300", WHITE);
 pCA1.addRow(INPUT_PROMPT, WHITE);
 
 
-PromptCreator pCA2 = PromptCreator("Aircraft-Type-2", "Choose Aircraft");
+PromptCreator pCA2 = PromptCreator("Aircraft-Type-Midsize", "Choose Aircraft");
 pCA2.addRow("[1]: Citation XL/XLS", WHITE);
 pCA2.addRow("[2]: Hawker 800XP", WHITE);
 pCA2.addRow(INPUT_PROMPT, WHITE);
 
 
-PromptCreator pCA3 = PromptCreator("Aircraft-Type-2", "Choose Aircraft");
+PromptCreator pCA3 = PromptCreator("Aircraft-Type-LargeCabin", "Choose Aircraft");
 pCA3.addRow("[1]:Gulfstream GIV-SP", WHITE);
 pCA3.addRow("[2]:Challenger 850", WHITE);
 pCA3.addRow("[3]:Legacy 650", WHITE);
@@ -76,39 +76,39 @@ pCDesCit1.addRow("[2]: Johor Bahru", WHITE);
 pCDesCit1.addRow(INPUT_PROMPT, WHITE);
 
 PromptCreator pCDesCit2 = PromptCreator(promptName, promptTitle);
-pCDesCit1.addRow("[1]: Istanbul", WHITE);
-pCDesCit1.addRow("[2]: Ankara", WHITE);
-pCDesCit1.addRow(INPUT_PROMPT, WHITE);
+pCDesCit2.addRow("[1]: Istanbul", WHITE);
+pCDesCit2.addRow("[2]: Ankara", WHITE);
+pCDesCit2.addRow(INPUT_PROMPT, WHITE);
 
 PromptCreator pCDesCit3 = PromptCreator(promptName, promptTitle);
-pCDesCit1.addRow("[1]: Sydney", WHITE);
-pCDesCit1.addRow("[2]: Melbourne", WHITE);
-pCDesCit1.addRow(INPUT_PROMPT, WHITE);
+pCDesCit3.addRow("[1]: Sydney", WHITE);
+pCDesCit3.addRow("[2]: Melbourne", WHITE);
+pCDesCit3.addRow(INPUT_PROMPT, WHITE);
 
 PromptCreator pCDesCit4 = PromptCreator(promptName, promptTitle);
-pCDesCit1.addRow("[1]: Riyadh", WHITE);
-pCDesCit1.addRow("[2]: Medina", WHITE);
-pCDesCit1.addRow(INPUT_PROMPT, WHITE);
+pCDesCit4.addRow("[1]: Riyadh", WHITE);
+pCDesCit4.addRow("[2]: Medina", WHITE);
+pCDesCit4.addRow(INPUT_PROMPT, WHITE);
 
 
 PromptCreator pCDesCit5 = PromptCreator(promptName, promptTitle);
-pCDesCit1.addRow("[1]: Doha", WHITE);
-pCDesCit1.addRow("[2]: Dukhan", WHITE);
-pCDesCit1.addRow(INPUT_PROMPT, WHITE);
+pCDesCit5.addRow("[1]: Doha", WHITE);
+pCDesCit5.addRow("[2]: Dukhan", WHITE);
+pCDesCit5.addRow(INPUT_PROMPT, WHITE);
 
 PromptCreator pCDesCit6 = PromptCreator(promptName, promptTitle);
-pCDesCit1.addRow("[1]: Geneva", WHITE);
-pCDesCit1.addRow("[2]: Bern", WHITE);
-pCDesCit1.addRow(INPUT_PROMPT, WHITE);
+pCDesCit6.addRow("[1]: Geneva", WHITE);
+pCDesCit6.addRow("[2]: Bern", WHITE);
+pCDesCit6.addRow(INPUT_PROMPT, WHITE);
 
 PromptCreator pCDesCit7 = PromptCreator(promptName, promptTitle);
-pCDesCit1.addRow("[1]: Jakarta", WHITE);
-pCDesCit1.addRow("[2]: Medan", WHITE);
-pCDesCit1.addRow(INPUT_PROMPT, WHITE);
+pCDesCit7.addRow("[1]: Jakarta", WHITE);
+pCDesCit7.addRow("[2]: Medan", WHITE);
+pCDesCit7.addRow(INPUT_PROMPT, WHITE);
 
 PromptCreator pCAddPilot = PromptCreator("additional-pilot?", NULL);
 pCAddPilot.addRow("Do you require a Pilot for your flight?", WHITE);
-pCAddPilot.addRow("*Note: It will increase base price upto 10%", FOREGROUND_BLUE);
+pCAddPilot.addRow("*Note: It will increase base fare upto 10%", FOREGROUND_BLUE);
 pCAddPilot.addRow(INPUT_PROMPT, WHITE);
 
 
@@ -179,7 +179,7 @@ pCTicketGen.addChild(&pCTicketGenDone);
 
 /*
 --------------------------------------
-Set callbacks for every prompt action
+Set/Link callbacks for every prompt action
 --------------------------------------
 */
 void (*callbackHome)(callbackArgs* cA);
@@ -202,6 +202,7 @@ callbackPInput = pCPInputDriver;
 callbackAType = pCATypeDriver;
 callbackA = pCADriver;
 callbackDesCoun = pCDesCounDriver;
+callbackDesCit = pCDesCitDriver;
 
 pCHome.setPromptActionDriver(callbackHome);
 pCPCount.setPromptActionDriver(callbackPCount);
@@ -211,6 +212,13 @@ pCA1.setPromptActionDriver(callbackA);
 pCA2.setPromptActionDriver(callbackA);
 pCA3.setPromptActionDriver(callbackA);
 pCDesCoun.setPromptActionDriver(callbackDesCoun);
+pCDesCit1.setPromptActionDriver(pCDesCitDriver);
+pCDesCit2.setPromptActionDriver(pCDesCitDriver);
+pCDesCit3.setPromptActionDriver(pCDesCitDriver);
+pCDesCit4.setPromptActionDriver(pCDesCitDriver);
+pCDesCit5.setPromptActionDriver(pCDesCitDriver);
+pCDesCit6.setPromptActionDriver(pCDesCitDriver);
+pCDesCit7.setPromptActionDriver(pCDesCitDriver);
 
 /*
 -----------------------------
@@ -231,8 +239,6 @@ End children append
 	BOOL stat = setWindowTitle("Flires FMS"); // Y
 	COORD wnSize = {120, 35};
 	setWindowPosNSize(wnSize);
-	clearStdOut();
-
 
 	callbackArgs cA;
 	cA.pC = &pCHome;

@@ -6,6 +6,7 @@
 #include <conio.h>
 
 void pCHomeDriver(callbackArgs* cA) {
+	clearStdOut();
 	COORD pco = cA->pC->createPrompt();
 	char opt;
 	cA->pC->promptInput(&opt, SELECTION_TYPE, pco);
@@ -152,28 +153,114 @@ void pCADriver(callbackArgs* cA) {
 		break;
 	}
 	case MIDESIZE: {
-		cA->pC->createPrompt();
+		COORD afPrIn = cA->pC->createPrompt();
+		char opt;
+		cA->pC->promptInput(&opt, SELECTION_TYPE, afPrIn);
+
+		switch (opt) {
+		case '1':
+		{
+			cA->flBk->bK->aircraftName = "Citation XL/XLS";
+			break;
+		}
+		case '2':
+		{
+			cA->flBk->bK->aircraftName = "Hawker 800XP";
+			break;
+		}
+		}
+
 		break;
 	}
 
 	case LARGECABIN: {
-		cA->pC->createPrompt();
+		COORD aPrIn = cA->pC->createPrompt();
+		char opt;
+		cA->pC->promptInput(&opt, SELECTION_TYPE, aPrIn);
+
+		switch (opt) {
+		case '1':
+		{
+			cA->flBk->bK->aircraftName = "Gulfstream GIV-SP";
+			break;
+		}
+		case '2':
+		{
+			cA->flBk->bK->aircraftName = "Challenger 850";
+			break;
+		}
+		case '3':
+		{
+			cA->flBk->bK->aircraftName = "Legacy 650";
+			break;
+		}
+		}
+
 		break;
 	}
 	}
 	callbackArgs cA1;
 	cA1.pC = cA->pC->children[0];
+	cA1.flBk = cA->flBk;
 	cA->pC->children[0]->execpromptActionDriver(&cA1);
 }
 
 void pCDesCounDriver(callbackArgs* cA) {
 	clearStdOut();
-	cA->pC->createPrompt();
-	_getch();
+	COORD afPrInCo = cA->pC->createPrompt();
+	char opt;
+	cA->pC->promptInput(&opt, SELECTION_TYPE, afPrInCo);
+	callbackArgs cA1;
+	switch (opt) {
+		case '1': {
+			cA->flBk->bK->destinationCountry = "Malaysia";
+			cA1.pC = cA->pC->children[0];
+			break;
+		}
+
+		case '2': {
+			cA->flBk->bK->destinationCountry = "Turkey";
+			cA1.pC = cA->pC->children[1];
+			break;
+		}
+
+		case '3': {
+			cA->flBk->bK->destinationCountry = "Australia";
+			cA1.pC = cA->pC->children[2];
+			break;
+		}
+
+		case '4': {
+			cA->flBk->bK->destinationCountry = "Saudia Arabia";
+			cA1.pC = cA->pC->children[3];
+			break;
+		}
+		case '5': {
+			cA->flBk->bK->destinationCountry = "Qatar";
+			cA1.pC = cA->pC->children[4];
+			break;
+		}
+		case '6': {
+			cA->flBk->bK->destinationCountry = "Switzerland";
+			cA1.pC = cA->pC->children[5];
+			break;
+		}
+		case '7': {
+			cA->flBk->bK->destinationCountry = "Indonesia";
+			cA1.pC = cA->pC->children[6];
+			break;
+		}
+	}
+
+	cA1.flBk = cA->flBk;
+	cA1.pC->execpromptActionDriver(&cA1);
 }
 
 void pCDesCitDriver(callbackArgs* cA) {
 	clearStdOut();
+	const char* destCountry = cA->flBk->bK->destinationCountry.c_str();
+	cA->pC->createPrompt();
+	_getch();
 }
 
 void pCDepDateDriver(callbackArgs* cA) {
