@@ -278,9 +278,11 @@ void pCDesCitDriver(callbackArgs* cA) {
 	else if (destCountry == "Turkey") {
 		switch (opt) {
 		case '1': {
+			cA->flBk->bK->destinationCity = "Istanbul";
 			break;
 		}
 		case '2': {
+			cA->flBk->bK->destinationCity = "Ankara";
 			break;
 		}
 		}
@@ -290,9 +292,11 @@ void pCDesCitDriver(callbackArgs* cA) {
 	else if (destCountry == "Australia") {
 		switch (opt) {
 		case '1': {
+			cA->flBk->bK->destinationCity = "Sydney";
 			break;
 		}
 		case '2': {
+			cA->flBk->bK->destinationCity = "Melbourne";
 			break;
 		}
 		}
@@ -302,9 +306,11 @@ void pCDesCitDriver(callbackArgs* cA) {
 	else if (destCountry == "Saudia Arabia") {
 		switch (opt) {
 		case '1': {
+			cA->flBk->bK->destinationCity = "Riyadh";
 			break;
 		}
 		case '2': {
+			cA->flBk->bK->destinationCity = "Medina";
 			break;
 		}
 		}
@@ -314,9 +320,11 @@ void pCDesCitDriver(callbackArgs* cA) {
 	else if (destCountry == "Qatar") {
 		switch (opt) {
 		case '1': {
+			cA->flBk->bK->destinationCity = "Doha";
 			break;
 		}
 		case '2': {
+			cA->flBk->bK->destinationCity = "Dukhan";
 			break;
 		}
 		}
@@ -326,9 +334,11 @@ void pCDesCitDriver(callbackArgs* cA) {
 	else if (destCountry == "Switzerland") {
 		switch (opt) {
 		case '1': {
+			cA->flBk->bK->destinationCity = "Geneva";
 			break;
 		}
 		case '2': {
+			cA->flBk->bK->destinationCity = "Bern";
 			break;
 		}
 		}
@@ -338,9 +348,11 @@ void pCDesCitDriver(callbackArgs* cA) {
 	else if (destCountry == "Indonesia") {
 		switch (opt) {
 		case '1': {
+			cA->flBk->bK->destinationCity = "Jakarta";
 			break;
 		}
 		case '2': {
+			cA->flBk->bK->destinationCity = "Medan";
 			break;
 		}
 		}
