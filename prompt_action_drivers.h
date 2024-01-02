@@ -259,8 +259,93 @@ void pCDesCounDriver(callbackArgs* cA) {
 void pCDesCitDriver(callbackArgs* cA) {
 	clearStdOut();
 	const char* destCountry = cA->flBk->bK->destinationCountry.c_str();
-	cA->pC->createPrompt();
-	_getch();
+	COORD aPrIn = cA->pC->createPrompt();
+	char opt;
+	cA->pC->promptInput(&opt, SELECTION_TYPE, aPrIn);
+	if (destCountry == "Malaysia") {
+		switch (opt) {
+		case '1': {
+			cA->flBk->bK->destinationCity = "Kuala Lumpur";
+			break;
+		}
+		case '2': {
+			cA->flBk->bK->destinationCity = "Johor Bahru";
+			break;
+		}
+		}
+	}
+
+	else if (destCountry == "Turkey") {
+		switch (opt) {
+		case '1': {
+			break;
+		}
+		case '2': {
+			break;
+		}
+		}
+
+	}
+
+	else if (destCountry == "Australia") {
+		switch (opt) {
+		case '1': {
+			break;
+		}
+		case '2': {
+			break;
+		}
+		}
+
+	}
+
+	else if (destCountry == "Saudia Arabia") {
+		switch (opt) {
+		case '1': {
+			break;
+		}
+		case '2': {
+			break;
+		}
+		}
+	
+	}
+
+	else if (destCountry == "Qatar") {
+		switch (opt) {
+		case '1': {
+			break;
+		}
+		case '2': {
+			break;
+		}
+		}
+
+	}
+
+	else if (destCountry == "Switzerland") {
+		switch (opt) {
+		case '1': {
+			break;
+		}
+		case '2': {
+			break;
+		}
+		}
+
+	}
+
+	else if (destCountry == "Indonesia") {
+		switch (opt) {
+		case '1': {
+			break;
+		}
+		case '2': {
+			break;
+		}
+		}
+
+	}
 }
 
 void pCDepDateDriver(callbackArgs* cA) {
