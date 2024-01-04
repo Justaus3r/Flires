@@ -358,6 +358,10 @@ void pCDesCitDriver(callbackArgs* cA) {
 		}
 
 	}
+	callbackArgs cA1;
+	cA1.flBk = cA->flBk;
+	cA1.pC = cA->pC->children[0];
+	cA->pC->children[0]->execpromptActionDriver(&cA1);
 }
 
 void pCDepDateDriver(callbackArgs* cA) {
